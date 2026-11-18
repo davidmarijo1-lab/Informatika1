@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Informatika – učim i vježbam</title>
+<style>
+:root{--bg:#f4f5fb;--fg:#181b2e;--card:#fff;--mut:#667090;--ac:#6366f1;--ac2:#a855f7;--acf:#fff;--ok:#12a366;--okb:#dcf5ea;--bad:#e0404f;--badb:#fde6e9;--bd:#e3e6f3;--sh:0 6px 24px rgba(60,66,140,.09);--g:linear-gradient(135deg,#6366f1,#a855f7 60%,#ec4899);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1020;--fg:#eceefb;--card:#171a2e;--mut:#9aa1c8;--ac:#8b8dff;--ac2:#c084fc;--acf:#0e1020;--ok:#4cd694;--okb:#13342a;--bad:#ff7783;--badb:#3a1b22;--bd:#2a2e4d;--sh:0 6px 24px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1020;--fg:#eceefb;--card:#171a2e;--mut:#9aa1c8;--ac:#8b8dff;--ac2:#c084fc;--acf:#0e1020;--ok:#4cd694;--okb:#13342a;--bad:#ff7783;--badb:#3a1b22;--bd:#2a2e4d;--sh:0 6px 24px rgba(0,0,0,.35);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;
+background-image:radial-gradient(520px 320px at 100% -40px,rgba(168,85,247,.22),transparent 70%),radial-gradient(460px 300px at -10% 0,rgba(99,102,241,.2),transparent 70%);background-repeat:no-repeat}
+#app{max-width:640px;margin:0 auto;padding:14px 16px 48px;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:30px;line-height:1.15;margin:10px 0 6px;letter-spacing:-.02em}h2{font-size:21px;margin:8px 0 14px;letter-spacing:-.01em}h3{font-size:17px;margin:0 0 8px}
+p{color:var(--mut);margin:0 0 18px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+mark{background:linear-gradient(transparent 45%,rgba(250,204,21,.55) 45%);color:inherit;padding:0 2px}
+sub,sup{line-height:0;font-size:.75em}
+ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
+.top{display:flex;justify-content:space-between;align-items:center;min-height:40px;margin-bottom:6px}
+.logo{font-weight:700;font-size:15px;color:var(--mut)}
+.back{background:none;border:none;color:var(--ac);padding:8px 0;font-size:15px;font-weight:600}
+.ico{width:40px;height:40px;border-radius:50%;border:1px solid var(--bd);background:var(--card);box-shadow:var(--sh);font-size:18px}
+.hero{background:var(--g);color:#fff;border-radius:26px;padding:24px 22px;margin:8px 0 18px;box-shadow:0 14px 34px rgba(124,58,237,.3)}
+.hero h1{margin:0 0 4px}.hero p{color:rgba(255,255,255,.85);margin:0 0 16px}
+.stats{display:flex;gap:10px}.stats div{flex:1;background:rgba(255,255,255,.18);border-radius:14px;padding:9px 6px;text-align:center;font-size:12px}
+.stats b{display:block;font-size:20px}
+.big{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--sh);transition:transform .15s,border-color .15s}
+.big:hover{border-color:var(--ac)}
+.big .bi{flex:none;width:52px;height:52px;border-radius:16px;background:var(--g);display:grid;place-items:center;font-size:26px}
+.big b{display:block;font-size:18px}.big span{color:var(--mut);font-size:14px;line-height:1.35;display:block}
+.big:active,.opt:active,.tp:active{transform:scale(.97)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.tp{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:16px 10px;text-align:center;font-size:14px;font-weight:600;box-shadow:var(--sh);transition:transform .15s,border-color .15s}
+.tp:hover{border-color:var(--ac)}
+.tp i{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 8px;border-radius:14px;background:var(--bd);font-size:24px;font-style:normal}
+.tp small{display:block;color:var(--mut);font-weight:400;margin-top:2px}
+.btn{background:var(--g);color:#fff;border:none;border-radius:14px;padding:13px 18px;font-weight:700;box-shadow:0 6px 16px rgba(124,58,237,.28)}
+.btn.ghost{background:var(--card);color:var(--fg);border:1px solid var(--bd);box-shadow:none}
+.row{display:flex;gap:10px;margin-top:16px}.row .btn{flex:1}
+.fc{perspective:900px}
+.fci{background:var(--card);border:1px solid var(--bd);border-radius:26px;min-height:270px;padding:24px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer;box-shadow:var(--sh);animation:flip .35s ease}
+@keyframes flip{from{opacity:0;transform:rotateX(-14deg) scale(.97)}to{opacity:1;transform:none}}
+.fci small{color:var(--ac);text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:700;margin-bottom:12px}
+.fci .t{font-size:22px;font-weight:700;line-height:1.3}
+.fci.a{border-color:var(--ac);justify-content:flex-start;text-align:left}
+.fci.a .t{font-size:16px;font-weight:400;max-height:58vh;overflow:auto}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;margin:8px 0 16px}.bar div{height:100%;background:var(--g);border-radius:6px;transition:width .35s}
+.hud{display:flex;justify-content:space-between;color:var(--mut);font-size:14px;font-weight:600}
+.q{font-size:20px;font-weight:700;margin:6px 0 16px;line-height:1.35}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:13px 14px;margin-bottom:10px;box-shadow:var(--sh);transition:transform .12s,border-color .12s}
+.opt:hover{border-color:var(--ac)}
+.opt em{flex:none;width:26px;height:26px;border-radius:9px;background:var(--bd);display:grid;place-items:center;font-size:13px;font-style:normal;font-weight:700}
+.opt.ok{border-color:var(--ok);background:var(--okb)}.opt.ok em{background:var(--ok);color:#fff}
+.opt.no{border-color:var(--bad);background:var(--badb)}.opt.no em{background:var(--bad);color:#fff}
+.fb{padding:13px 15px;border-radius:14px;margin-top:6px;font-weight:600;animation:in .25s}.fb.ok{background:var(--okb);color:var(--ok)}.fb.no{background:var(--badb);color:var(--bad)}
+.res{text-align:center;font-size:56px;margin:6px 0}
+.ring{width:130px;height:130px;border-radius:50%;margin:8px auto 14px;display:grid;place-items:center;font-size:26px;font-weight:800;background:conic-gradient(var(--ac) calc(var(--p)*1%),var(--bd) 0);position:relative}
+.ring::before{content:"";position:absolute;inset:11px;border-radius:50%;background:var(--bg)}.ring span{position:relative}
+.rv{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--bad);border-radius:14px;padding:11px 13px;margin-bottom:9px;font-size:14px}
+.rv b{display:block;margin-bottom:3px}.rv span{color:var(--ok)}
+.srch{width:100%;box-sizing:border-box;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:14px;padding:12px 14px;font:inherit;margin-bottom:16px;box-shadow:var(--sh)}
+.blk{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--sh)}
+.blk.st{border-left:5px solid var(--ac2)}
+.blk h3{display:flex;justify-content:space-between;gap:8px}
+.fm{text-align:center;font-size:20px;font-family:"Times New Roman",Georgia,serif;font-style:italic;margin:12px 0;overflow-x:auto}
+.sg{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;font-style:normal;margin:0 4px}
+.sg b{font-size:32px;font-weight:400}.sg i{font-size:12px;font-style:normal}
+.tbw{overflow-x:auto}
+.tb{border-collapse:collapse;margin:10px auto;font-size:14px;border-radius:10px;overflow:hidden}.tb td,.tb th{border:1px solid var(--bd);padding:6px 11px;text-align:center}.tb th{background:var(--bd)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var L=function(a){return"<ul>"+a.map(function(x){return"<li>"+x+"</li>"}).join("")+"</ul>"};
+var F=function(x){return"<div class='fm'>"+x+"</div>"};
+var TB=function(r){return"<div class='tbw'><table class='tb'>"+r.map(function(x,i){return"<tr>"+x.map(function(c){return(i?"<td>":"<th>")+c+(i?"</td>":"</th>")}).join("")+"</tr>"}).join("")+"</table></div>"};
+var R=function(s){return s.replace(/\*\*(.+?)\*\*/g,"<mark>$1</mark>").replace(/([A-Za-z])_(\w)/g,"$1<sub>$2</sub>").replace(/\^(\w+)/g,"<sup>$1</sup>")};
+var SIG="<span class='sg'><i>z</i><b>Σ</b><i>i=1</i></span>";
+var D=[
+["Osnove informatike","🧠",[
+["Podrijetlo pojma informatika","Pojam **informatika** prvi se put pojavljuje u Francuskoj 1962. g. Riječ je tvorio **Dreifus** od dvije riječi: **Information** i **Automatique**.","Dreifus, Francuska 1962.; od riječi Information + Automatique.",1],
+["Tehnička informatika","Bavi se prvenstveno izgradnjom računala. Najvažnija problemska područja su brzina obrade, pohranjivanje podataka, organizacija i arhitektura računala.","Izgradnja računala: brzina obrade, pohrana podataka, organizacija i arhitektura.",1],
+["Praktična informatika","Bavi se programiranjem kao i razvojem softvera, programa koje izvode računala. Najvažnija područja su izgradnja algoritama, programski jezici, operacijski sustavi i jezici prevoditelji. Programi prevoditelji prevode programe pisane u izvornom jeziku u strojni kod.","Programiranje i razvoj softvera: algoritmi, programski jezici, operacijski sustavi, jezici prevoditelji.",1],
+["Teorijska informatika","Matematička je osnova informatike. Bavi se matematičkim algoritmima primijenjenim u informatici, formalnom ispravnosti programskih jezika i sl. Promatrane zajedno, tehnička, praktična i teorijska informatika čine središnji dio, srž informatike (**kerninformatiku**).","Matematička osnova informatike; s tehničkom i praktičnom čini kerninformatiku.",1],
+["Primijenjena informatika","Stoji nasuprot teorijskoj, praktičnoj i tehničkoj informatici. Istražuje mogućnost primjene računala. Pokušava ih primijeniti na što je moguće više područja svakodnevnog života i rada kako bi se olakšalo i ubrzalo izvršavanje poslova.","Primjena računala na što više područja života i rada radi olakšanja i ubrzanja poslova.",1]]],
+["Teorija informacije","📡",[
+["Informacija kao predmet proučavanja","**Teorija informacije** pojavljuje se sredinom 20. stoljeća. To je jedan od najsloženijih pojmova teorijske misli. Informacija nosi niz novih pojmova kao što su informacijska znanost, informatika, informatička revolucija, informacijska eksplozija itd. **Upravljanje je jedan od najvećih potrošača informacija.** Na pitanje što je informacija još nema jedinstvenog odgovora; mnoštvo definicija odražava različite kutove njezina promatranja. Pojam se promatra s gledišta teorije odraza, matematičko-statističke teorije informacija, društveno-ekonomskog pristupa (osobito važan za poslovnu informatiku) i informatičkog pogleda na bit pojma informacije.","Teorija informacije nastaje sredinom 20. st.; upravljanje je jedan od najvećih potrošača informacija.",1],
+["Matematičko-statistička teorija informacija","Često se zove **klasični ili Shannonov pristup informaciji**. Informacija je, kao jedno od svojstava tvari, morala imati svoju mjeru. Pojam mjere informacije uveo je **John Taci** (tako piše u skripti), a jedinici informacije dao je naziv **bit**. Informacija i neizvjesnost tehnički su pojmovi koji opisuju proces izbora jednog ili više objekata iz skupa objekata. Matematička teorija informacija bavi se količinom informacije.","Klasični (Shannonov) pristup; bavi se količinom informacije, jedinica je bit.",1],
+["Primjer: generator simbola A, B, C","Uređaj proizvodi tri simbola: A, B ili C. U trenutku t_0 promatrač ima samo informaciju da se može pojaviti jedan od tri simbola, pa je neizvjesnost tri simbola. U trenutku t_1 na izlazu se pojavljuje simbol A, što smanjuje neizvjesnost (dobivena je nova informacija). U trenutku t_2 pojavljuje se simbol C; time je neizvjesnost u potpunosti uklonjena i promatrač je siguran da će sljedeći simbol biti B.","Informacija smanjuje neizvjesnost; nakon A i C promatrač je siguran da slijedi B.",0],
+["Shannonova opća formula za entropiju","Entropija konačne distribucije vjerojatnosti:"+F("H = −"+SIG+" p_i log_2 p_i"),"H = −Σ p_i log_2 p_i (zbroj od i=1 do z)",1],
+["Svojstva entropije","Jednadžba entropije ima određena svojstva:"+L(["H(1) = 0: entropija sigurnog događaja jednaka je 0 bitova.","H(p_1, p_2, …, p_n) ne ovisi o redoslijedu vjerojatnosti p_i (permutaciji).","H(1/n, 1/n, …, 1/n) je funkcija broja događaja n. Istodobno je entropija rastuća funkcija broja događaja.","**Entropija je maksimalna kada svi događaji imaju istu vjerojatnost i jednaka je H = log_2 n.**","H(p_1, 1−p_1) je neprekidna funkcija od p_1. Dostiže maksimum kada oba događaja imaju jednake vjerojatnosti (**p_1 = 1/2**). **Maksimalna entropija tada iznosi 1 bit.**"]),"Maksimum kad su svi događaji jednako vjerojatni: H = log_2 n; za dva događaja (p = 1/2) to je 1 bit.",1],
+["Društveno-ekonomski pristup informaciji","Promatra informaciju kao **čimbenika proizvodnje**. Razvoj smanjuje potrebe za neposrednim radom u proizvodnom procesu; između stroja i materijala sve se manje nalazi neposredni rad. Proizvodnja integrirana pomoću računala postala je stvarnost. Ono što se prenosi, osim materijala, jest i informacija. Ona postaje novim čimbenikom proizvodnje, kao što su rad i kapital.<br><i>Bilješka: u ekonomskom smislu informacija se amortizira i promatra u vremenu.</i><br>Informacijsko doba formira društvo u kojem informacija ima sljedeća obilježja:"+L(["postaje proizvod kao što su automobili, željezo, računalo i sl.","ima vrijednost","predmet je razmjene","ne troši se uporabom","obnovljiv je resurs","ne djeluje štetno na čovjekovu sredinu"]),"Informacija je čimbenik proizvodnje uz rad i kapital; ima vrijednost, ne troši se uporabom, obnovljiv je resurs.",1],
+["Informatički pristup (hijerarhija)","Hijerarhija:"+TB([["Zbroj","Rezultat"],["nejasne činjenice (noise) + kontekst","**podatak**"],["podatak + dorada","**informacija**"],["informacija + interpretacija","**znanje**"],["znanje ∘ znalu","**metaznanje**"],["metaznanje + iskustvo","**mudrost**"]])+"<i>Bilješke: u informatici podatak ima 3 elementa: objekt, svojstvo i vrijednost. Danas informatika razvija informacijske sustave koji pohranjuju podatke, transformiraju ih i kreiraju nova znanja.</i>","Činjenice + kontekst = podatak; + dorada = informacija; + interpretacija = znanje; … + iskustvo = mudrost.",1]]],
+["Booleova algebra","🔀",[
+["Osnovne operacije","**Negacija** (unarna operacija s oznakom ¬), **konjunkcija** (binarna operacija s oznakom ∧) i **disjunkcija** (binarna operacija s oznakom ∨). Binarne operacije su definirane na najmanje dvije logičke varijable.","Negacija ¬ (unarna), konjunkcija ∧ (binarna), disjunkcija ∨ (binarna).",1],
+["Tablice istinitosti","Operacija negacije:"+TB([["A","¬A"],["0 (laž)","1 (istina)"],["1 (istina)","0 (laž)"]])+"Konjunkcija i disjunkcija:"+TB([["A_1","A_2","A_1 ∧ A_2","A_1 ∨ A_2"],["0","0","0","0"],["1","0","0","1"],["0","1","0","1"],["1","1","1","1"]]),"",0],
+["Zakoni negacije","A ∨ (¬A) = 1<br>A ∧ (¬A) = 0","Zakoni negacije: A ∨ ¬A = 1 i A ∧ ¬A = 0.",1],
+["Zakoni konjunkcije","Komutacija: A_1 ∧ A_2 = A_2 ∧ A_1<br>Asocijacija: A_1 ∧ A_2 ∧ A_3 = (A_1 ∧ A_2) ∧ A_3 = A_1 ∧ (A_2 ∧ A_3)<br>Distribucija: A_1 ∧ (A_2 ∨ A_3) = (A_1 ∧ A_2) ∨ (A_1 ∧ A_3)<br>**Neutralni element konjunkcije je 1**, tj. A ∧ 1 = A","Konjunkcija: komutacija, asocijacija, distribucija; neutralni element je 1.",1],
+["Zakoni disjunkcije","Komutacija: A_1 ∨ A_2 = A_2 ∨ A_1<br>Asocijacija: A_1 ∨ A_2 ∨ A_3 = (A_1 ∨ A_2) ∨ A_3 = A_1 ∨ (A_2 ∨ A_3)<br>Distribucija: A_1 ∨ (A_2 ∧ A_3) = (A_1 ∨ A_2) ∧ (A_1 ∨ A_3)<br>**Neutralni element disjunkcije je 0**, tj. A ∨ 0 = A<br><i>(U skripti piše „konjunkcije“, ali ispravno je disjunkcije.)</i>","Disjunkcija: komutacija, asocijacija, distribucija; neutralni element je 0.",1],
+["De Morganovi teoremi","U algebri logike vrijede dva **de Morganova teorema**. Ako su A_i, i = 1, 2, …, n logičke varijable, vrijedi:"+F("¬(A_1 ∨ A_2 ∨ … ∨ A_n) = ¬A_1 ∧ ¬A_2 ∧ … ∧ ¬A_n")+F("¬(A_1 ∧ A_2 ∧ … ∧ A_n) = ¬A_1 ∨ ¬A_2 ∨ … ∨ ¬A_n")+"Teorem se može dokazati i metodom indukcije, za što je potrebna tablica.","Negacija disjunkcije = konjunkcija negacija, a negacija konjunkcije = disjunkcija negacija.",1]]],
+["Struktura računala","🖥️",[
+["Struktura računala","Internu ili unutarnju strukturu računala čine **četiri osnovne komponente**:"+L(["**središnja procesna jedinica** (CPU), izvršava obradu i kontrolira rad svih drugih komponenata, najčešće se zove procesor","**glavna memorija**, pohranjuje podatke i programe","**ulazno/izlazne jedinice**, prenose podatke između računala i okoline","**veze ili sabirnice**, omogućuju komunikaciju između CPU-a, glavne memorije i ulazno/izlaznih jedinica"])+"Unutar računala može postojati jedna ili više glavnih komponenata, npr. više procesora i hard diskova.","CPU, glavna memorija, ulazno/izlazne jedinice i sabirnice.",1],
+["Digitalna tehnika","U odnosu na analogni prikaz numeričkih vrijednosti digitalne tehnike pokazuju istodobno niz prednosti, ali i nedostataka."+TB([["Prednosti","Nedostatci"],["jednostavniji dizajn","pretvoriti analogne veličine u digitalni oblik"],["pohranjivanje digitalnih veličina je jednostavnije","obraditi digitalne podatke"],["pouzdanost je veća","pretvoriti digitalne podatke nazad u prirodni – analogni oblik"],["digitalni sklopovi su pod manjim utjecajem šumova i smetnji",""]]),"Prednosti: jednostavniji dizajn i pohrana, veća pouzdanost, manji utjecaj šumova i smetnji.",1],
+["Von Neumannov model računala","Suvremena računala uglavnom rabe koncept Johna von Neumanna i IAS računala. Takav dizajn poznat je kao **von Neumannova arhitektura** i temelji se na tri bitna koncepta:"+L(["Podatci i programi pohranjuju se u **istoj memoriji**. Osnovne operacije nad podatcima u memoriji su čitanje i pisanje.","Sadržaji u memoriji adresiraju se na lokacijama, **bez obzira na tipove podataka** smještenih na lokacijama.","Programi se izvršavaju **sekvencijalno, naredbu po naredbu**. (Program je skup instrukcija koje se izvode slijedno, jedna po jedna.)"]),"1) podaci i programi u istoj memoriji, 2) adresiranje bez obzira na tip podataka, 3) sekvencijalno izvršavanje naredbu po naredbu.",1],
+["Pet funkcijskih jedinica računala","Računalo ima pet funkcijskih jedinica: **aritmetička jedinica, upravljačka jedinica, memorija, ulazna jedinica i izlazna jedinica**. Upravljačka jedinica i aritmetičko-logička jedinica čine središnju procesnu jedinicu. U/I jedinica povezuje računalo s vanjskim uređajima, a **DMA** je izravan pristup memoriji.","Aritmetička, upravljačka, memorija, ulazna i izlazna jedinica.",1],
+["Četiri temeljne funkcije računala","<ol><li>obrada podataka</li><li>pohranjivanje podataka (kratkotrajno i dugotrajno)</li><li>upravljanje podatcima (upravljački zadatci)</li><li>distribucija podataka (razmjena podataka s okolinom preko vanjskih jedinica)</li></ol>","Obrada, pohranjivanje, upravljanje i distribucija podataka.",1],
+["Instrukcijska riječ","Instrukcijska riječ ima 16 bitova (0 do 15): bitovi 0 do 3 su **operacijski kod (4 bita)**, a bitovi 4 do 15 su **adresa operanda (12 bitova)** – adresno polje. S četiri bita u operacijskom kodu može se označiti 2^4 = 16 različitih operacijskih kodova. Za adresiranje operanda ostaje 12 binarnih znamenki, pa je ukupan broj lokacija memorije koji se može izravno adresirati 2^12 = 4096 riječi memorije.","Operacijski kod 4 bita (2^4 = 16 kodova) + adresa 12 bitova (2^12 = 4096 riječi).",1],
+["Povezivanje komponenti računala","Skupovi vodiča koji povezuju komponente računala zovu se **sabirnice**. Sabirnice prenose određene sadržaje i osiguravaju sljedeće veze:"+L(["**Memorija ↔ CPU**: čitanje instrukcija i podataka iz memorije i upisivanje podataka u memoriju","**U/I ↔ CPU**: CPU putem U/I modula čita podatke s ulazno/izlaznih uređaja ili šalje podatke nekom ulaznom ili izlaznom uređaju","**U/I ↔ memorija**: U/I jedinica izmjenjuje podatke izravno s memorijom bez CPU-a. To je izravan pristup memoriji (DMA)."]),"Memorija ↔ CPU, U/I ↔ CPU i U/I ↔ memorija (DMA, bez CPU-a).",1]]],
+["Sabirnice i memorija","🚌",[
+["Sabirnica","**Sabirnica** je skup vodiča koji povezuju dva ili više uređaja. One su dijeljeni medij za prijenos podataka na koji se povezuje više uređaja. Sabirnica koja povezuje glavne komponente računala (CPU, memoriju, U/I) zove se **sabirnica sustava**. Sastoji se od niza odvojenih vodiča. Sve sustavne komponente računala mogu se povezati na pojedine ili na sve vodove sabirnice. (Slika 3.19: lokalna sabirnica 32 ili 64 bita, ISA 16-bitna, VL 32-bitna, PCI 32 ili 64-bitna.)","Skup vodiča koji povezuje dva ili više uređaja; dijeljeni medij.",1],
+["Funkcionalne skupine vodiča","Vodiči imaju posebne funkcije ili značenja. Na sabirnici vodiči mogu biti svrstani u tri funkcionalne skupine: **vodiči podataka, adresa i upravljački vodovi**.","Vodiči podataka, adresa i upravljački vodovi.",1],
+["Sabirnice podataka i širina sabirnice","**Sabirnice podataka** osiguravaju prijenos podataka između jedinica računala. Čine ih skupine vodiča koji prenose podatke. Broj sabirničkih vodova zove se **širina sabirnice**. Fizički promatrano, sabirnica sustava je određen broj paralelnih vodiča u obliku utisnutih metalnih vodova vidljivih na karticama ili matičnoj ploči računala.","Širina sabirnice je broj sabirničkih vodova (paralelnih vodiča) podatkovne sabirnice.",1],
+["Razine hijerarhije memorije","Izgradnja memorije treba dati odgovore na tri pitanja: **koliki je potreban kapacitet memorije, koja brzina, koja cijena**. Razine od vrha:"+TB([["#","Razina","Vrijeme pristupa"],["1","Registri","0,5 ns"],["2","Priručna memorija (L1/L2)","4/20 ns"],["3","Glavna memorija",""],["4","Magnetni disk","5 ms"],["5","Vanjske memorije za arhiviranje (optičke, magnetna vrpca…)",""]]),"Registri → priručna L1/L2 → glavna → magnetni disk → vanjske za arhiviranje.",1],
+["Zakonitosti hijerarhije memorije","Promatrajući hijerarhiju odozgo prema dolje, možemo zaključiti:"+L(["**smanjenje troškova po bitu** memorije","**povećanje kapaciteta**","**povećanje vremena pristupa**","**smanjenje učestalosti pristupa** CPU-a memoriji"]),"Prema dolje: manji trošak po bitu, veći kapacitet, dulje vrijeme pristupa, rjeđi pristup CPU-a.",1]]],
+["Vanjske memorije","💽",[
+["Vanjske memorije i magnetni disk","**Vanjske memorije** omogućuju trajno pohranjivanje većih količina podataka. Zato su kapaciteti vanjskih memorija znatno veći od internih memorija. **Magnetni disk je još uvijek najvažnija vanjska memorija.** Izrađen je od čvrstog materijala i nije savitljiv. U istom kućištu može se nalaziti više diskova.","Magnetni disk je najvažnija vanjska memorija; omogućuju trajnu pohranu većih količina podataka.",1],
+["Glava diska, tragovi i sektori","**Glava diska** je relativno malen uređaj koji se kreće radijalno i upisuje i čita podatke na površinu i s površine tvrdog diska. Podatci se upisuju na koncentrične krugove koji se zovu **tragovi**. Tako se smanjuju pogreške u čitanju i pisanju. Radi pojednostavljenja elektronike diska na svakom tragu pohranjuje se jednak broj bitova, pa se gustoća bitova povećava gibajući se prema unutarnjim trgovima površine diska. Tragovi se dijele na **sektore**. Svaki trag sadrži veći broj sektora (najčešće od 10 do 100). Sektori mogu biti promjenjive ili fiksne dužine. Sektori se međusobno odvajaju praznim prostorom na koji se ne smještaju bitovi podataka.","Tragovi su koncentrični krugovi; trag se dijeli na sektore (10 do 100) odvojene praznim prostorom.",1],
+["Pronalaženje sektora na tragu","Za pronalaženje sektora potrebno je odrediti početak svakog traga te početak i kraj svakog sektora na tragu. Ti se zahtjevi ispunjavaju upisom **posebnih kontrolnih bitova** na disku. Tako se disk formira s posebnim podatcima koje rabi samo pogon diska. Tim podatcima korisnik ne može pristupiti.","Upisom posebnih kontrolnih bitova na disk; njima pristupa samo pogon diska.",1],
+["Upravljanje diskom: FCFS","Disk je ulazno/izlazni uređaj. Najjednostavniji oblik upravljanja diskom je **prvi došao – prvi uslužen (first-come, first-served)**. Slabost te metode je veliko kretanje glave diska, što produljuje vrijeme pristupa i upisa podataka. Operacijski sustav šalje zahtjeve kontroleru diska u redoslijedu prvi došao – prvi uslužen, a kontroler izvršava zahtjev u nekom optimalnom redoslijedu.","Prvi došao – prvi uslužen; slabost je veliko kretanje glave diska.",1],
+["Upravljanje diskom: SSTF","Cilj je smanjiti prosječno vrijeme servisiranja svakog zahtjeva. Zato je razvijena metoda **prvo uslužiti zahtjev čije je vrijeme pronalaženja tragova najkraće (shortest seek time first)**.","Prvo uslužiti zahtjev s najkraćim vremenom pronalaženja traga (shortest seek time first).",1]]],
+["Operacijski sustav","⚙️",[
+["Što je operacijski sustav","Često se zove **kontrolno-upravljački softver**. OS je skup programa ili programskih modula koji omogućuju efikasnu uporabu računalnih resursa. Pod njegovom se kontrolom nalazi rad računalnog sustava. Programi OS-a veliki su programi koji se bitno ne razlikuju od drugih programa; razlika je samo u veličini programa i složenosti primjene općih programskih tehnika. Računalo **ne može raditi bez programa OS-a**. Isto računalo može raditi s više operacijskih sustava. Tipkovnica je povezana s odgovarajućim čipovima za ulaz i izlaz, koji prepoznaju uneseni znak i pretvaraju ga u niz 0 i 1. Takav niz signala sabirnicama se prenosi u glavnu memoriju, a odatle na neku izlaznu jedinicu. Operacijski je sustav organiziran skup sastavnih programa koji djeluju kao **posrednik između hardvera i korisnika**.","Kontrolno-upravljački softver; posrednik između hardvera i korisnika.",1],
+["Tri načina rada računalnog sustava","Postoje tri temeljna načina rada: **1) skupna obrada (batch), 2) obrada s podjelom vremena (time sharing), 3) rad u realnom vremenu (real-time processing)**. Jedan OS može podržati više načina rada računala. Način rada računalnog sustava bitno utječe na strukturu OS-a.","Skupna obrada (batch), podjela vremena (time sharing) i realno vrijeme (real-time).",1],
+["Skupna obrada (batch)","Način rada u kojem korisnici predaju poslove računalu pomoću ulaznih jedinica, a oni se zatim izvršavaju **serijski** (jedan za drugim). Korisnik u tijeku obrade ne može komunicirati sa zadatkom obrade. Vrijeme odziva računala traje nekoliko minuta.","Poslovi se izvršavaju serijski, bez komunikacije korisnika; odziv nekoliko minuta.",1],
+["Obrada s podjelom vremena","Više korisnika istodobno rabi računalo i izravno komunicira sa svojim zadatkom obrade. Paralelnost obrada postiže se tako što svakom zadatku procesor dodjeljuje određeni **vremenski odsječak** (npr. 100 ms). Odziv korisniku traje nekoliko sekundi. Nakon isteka dodijeljenog vremena jednom procesu, izvršavanje se toga procesa prekida, a procesor se dodjeljuje sljedećem procesu u redu čekanja ili procesu s najvišim prioritetom.","Više korisnika istodobno; vremenski odsječak (npr. 100 ms); odziv nekoliko sekundi.",1],
+["Rad u realnom vremenu","Način rada u kojem je odziv sustava u **unaprijed određenom vremenu**. Kada procesor generira signal prekida, odmah dobiva vrijeme CPU-a.","Odziv u unaprijed određenom vremenu; signal prekida odmah dobiva CPU.",1],
+["Funkcije OS-a","Funkcije OS-a su skupovi zadataka koje programi OS-a učinkovito izvršavaju. Opće funkcije su:"+"<ol><li>upravljanje zadacima obrade</li><li>upravljanje podatcima</li><li>upravljanje ulazom/izlazom</li><li>upravljanje memorijom</li><li>obrada prekida</li><li>dodjeljivanje procesora</li><li>zaštita</li><li>podržavanje daljinske obrade</li><li>interpretiranje i izvođenje kontrolno-upravljačkih naredbi i komandi</li><li>podržavanje rada u računalnoj mreži</li></ol>","10 općih funkcija: zadaci, podatci, U/I, memorija, prekidi, procesor, zaštita, daljinska obrada, naredbe, mreža.",1],
+["Upravljanje memorijom","Odnosi se na upravljanje glavnom memorijom računala, pri čemu se razlikuju **četiri skupine zadataka**:<ol><li>neprestano voditi računa o slobodnom i zauzetom prostoru u glavnoj memoriji, da bi se moglo odlučiti može li program biti pohranjen u memoriji i time omogućiti izvršavanje novog procesa</li><li>način dodjeljivanja glavne memorije procesima: kome (kojem programu odnosno procesu), koliko, kada i gdje (na kojem mjestu u memoriji smjestiti proces)</li><li>tehnika dodjele i izražavanje adresa memorije koje proces traži</li><li>oslobađanje memorije (dealokacija): odlučuje se i provodi izbacivanje nekog programa iz memorije</li></ol>","Evidencija prostora, dodjeljivanje (kome, koliko, kada, gdje), tehnika dodjele i adresiranje, dealokacija.",1],
+["Sustavni softver","Skup programa stalno prisutnih u računalnom sustavu koji omogućuju djelotvornu uporabu računalnih resursa. Dijeli se na **tri skupine**:<ol><li>operacijski sustav</li><li>uslužni softver (utility programi): olakšavaju uporabu aplikacijskih programa</li><li>jezici prevoditelji: prevode jezike visoke razine na strojni jezik</li></ol>","Operacijski sustav, uslužni softver (utility) i jezici prevoditelji.",1],
+["Aplikacijski softver","„Bliži“ je korisniku i rješava konkretan korisnikov zahtjev, zadatak ili problem.","Bliži je korisniku i rješava konkretan zadatak ili problem.",0]]],
+["Datoteke i alokacija","🗂️",[
+["Pohranjivanje blokova datoteke","Datoteke se pohranjuju tako da se njihov sadržaj dijeli na dijelove fiksne dužine koji se zovu **blokovi**. Blokovi datoteke mogu se smjestiti (alocirati) na slobodne prostore diska na različite načine. Temeljni je problem alokacije pronaći djelotvoran način njihova pronalaženja koji će smanjiti vrijeme pronalaženja podataka datoteke. Tri se metode najčešće rabe: **susjednih blokova, povezivanja blokova i indeksna metoda**.","Tri metode: susjednih blokova, povezivanja blokova i indeksna.",1],
+["Metoda susjednih blokova","Znači pohranjivanje blokova na disku na **susjednim klasterima**. Za pronalaženje blokova datoteke dovoljno je poznavati **adresu prvog bloka i broj blokova datoteke**, tj. njezinu dužinu.","Blokovi na susjednim klasterima; dovoljno je znati adresu prvog bloka i broj blokova.",1],
+["Metoda povezivanja blokova","Svaki blok datoteke sadrži **pokazivač na sljedeći blok**, pri čemu blokovi ne moraju biti raspoređeni na susjednim klasterima. Najjednostavnije je rješenje vezivanje blokova u lanac tako da prethodni blok sadrži adresu sljedećeg bloka. Samo prvi blok datoteke ima adresu u mapi kojoj datoteka pripada. Poznavajući adresu prvog bloka, sekvencijalno se pronalaze ostali blokovi. Posljednji blok ne sadrži pokazivač na sljedeći pa je time označen i kraj datoteke. Drugačije je rješenje kreiranje tablice u kojoj su sadržane adrese blokova datoteke. Mapa datoteke sadrži adresu prvog i posljednjeg bloka datoteke.","Svaki blok ima pokazivač na sljedeći; zadnji blok bez pokazivača označava kraj datoteke.",1],
+["Indeksna metoda","**Tablica indeksa** sadrži adrese pojedinih blokova datoteke. Prvi indeks tablice sadrži adresu prvog bloka datoteke, drugi indeks adresu drugog bloka i tako redom. **Indeksna metoda znači da svaka datoteka ima svoju tablicu indeksa blokova**, a oni čine niz adresa blokova datoteke na disku. OS postiže rješenje za navedene metode kreiranjem odgovarajućih algoritama. Moguća je i kombinacija tih metoda unutar istog OS-a.","Svaka datoteka ima svoju tablicu indeksa s adresama njezinih blokova.",1],
+["Alokacija memorije","Označava spremanje procesa u memoriju. Dvije su osnovne tehnike: alokacija u stranicama (paging) i alokacija u segmentima.","Označava spremanje procesa u memoriju.",0],
+["Alokacija memorije u stranicama (paging)","Temeljna je ideja podjela memorije na male dijelove jednake dužine. Osim memorije na male se dijelove dijele i procesi. Takvi mali dijelovi procesa zovu se **stranice**, a memorije **okviri**. Problem fragmentacije memorije bio bi riješen ukoliko je veličina svake stranice procesa jednaka veličini okvira memorije u koju se stranica procesa sprema.","Memorija se dijeli na okvire, proces na stranice jednake veličine.",1],
+["Alokacija memorije u segmentima","**Segment** je dio procesa (npr. programa) koji čini zasebnu logičku cjelinu. Segment može biti jedan ili više programa, jedna ili više baza podataka. Programer vidi segment kao posebnu linearnu memoriju određene veličine (segmenti ne moraju biti iste veličine). Alokacija memorije u segmentima, kao i straničenje, poziva segmente u RAM na zahtjev, kada su potrebni za obradu.","Segment je logička cjelina procesa promjenjive veličine, vidljiva programeru.",1],
+["Segmenti i stranice: razlike","Razlike između te dvije tehnike alokacije:"+L(["segmenti su **logički**, a stranice **fizičke cjeline**","segmenti su **promjenjivi**, a stranice **unaprijed određene veličine**","stranice **nisu vidljive** programeru dok su segmenti vidljivi"])+"U **tablici segmenata** za svaki se segment vode podatci o adresi segmenta na vanjskoj memoriji, veličini segmenta, logičkoj oznaci postojanja ili nepostojanja segmenta u radnoj memoriji te početnoj adresi segmenta u RAM-u. Svaki redak tablice sadrži podatke za jedan segment. Segmentiranje ima jedan ozbiljan nedostatak: **fragmentiranje memorije**. Nakon niza alociranja i dealociranja segmenata u RAM-u ponovno se stvaraju relativno velike slobodne cjeline pa memorija nije dovoljno iskorištena.","Segmenti: logički, promjenjivi, vidljivi; stranice: fizičke, fiksne, nevidljive. Nedostatak segmenata: fragmentacija.",1]]]
+];
+var app=document.getElementById("app"),S={},K={best:0,played:0,xp:0};
+try{var sv=JSON.parse(localStorage.getItem("inf-stats"));if(sv)K=sv}catch(e){}
+function save(){try{localStorage.setItem("inf-stats",JSON.stringify(K))}catch(e){}}
+function sh(a){return a.slice().sort(function(){return Math.random()-.5})}
+function allS(){return[].concat.apply([],D.map(function(t){return t[2]}))}
+function dark(){var t=document.documentElement.getAttribute("data-theme");return t?t=="dark":window.matchMedia("(prefers-color-scheme: dark)").matches}
+function tg(){document.documentElement.setAttribute("data-theme",dark()?"light":"dark")}
+function hd(b){return"<div class='top'>"+(b?"<button class='back' onclick=\""+b+"\">‹ Natrag</button>":"<span class='logo'>📘 Informatika</span>")+"<button class='ico' onclick='tg()' aria-label='Promijeni temu'>◐</button></div>"}
+function render(h){app.style.animation="none";app.innerHTML=h;void app.offsetWidth;app.style.animation="";window.scrollTo(0,0)}
+function home(){
+S.view="home";
+render(hd()+"<div class='hero'><h1>Kolokvij: spreman?</h1><p>Čitaj, uči kartice i vježbaj kviz.</p><div class='stats'><div><b>"+K.xp+"</b>XP ukupno</div><div><b>"+K.best+"</b>najbolji niz</div><div><b>"+K.played+"</b>kvizova</div></div></div>"+
+"<button class='big' onclick=\"pick('read')\"><span class='bi'>📄</span><div><b>Čitam</b><span>Puni tekst iz skripte, s formulama i tablicama. ⭐ = istaknuto u skripti.</span></div></button>"+
+"<button class='big' onclick=\"pick('learn')\"><span class='bi'>📖</span><div><b>Učim</b><span>Kartice: pojam na prednjoj, puna definicija na poleđini.</span></div></button>"+
+"<button class='big' onclick=\"pick('quiz')\"><span class='bi'>🎯</span><div><b>Vježbam</b><span>Kviz s bodovima i nizom točnih odgovora.</span></div></button>");
+}
+function pick(m){
+S.mode=m;S.view="pick";
+var h=hd("home()")+"<h2>"+(m=="learn"?"Što učiš?":m=="quiz"?"Što vježbaš?":"Što čitaš?")+"</h2><div class='grid'>";
+D.forEach(function(t,i){var n=m=="quiz"?t[2].filter(function(c){return c[2]}).length:t[2].length;h+="<button class='tp' onclick='go("+i+")'><i>"+t[1]+"</i>"+t[0]+"<small>"+n+(m=="quiz"?" pitanja":m=="learn"?" kartica":" dijelova")+"</small></button>"});
+h+="</div>";
+if(m=="quiz")h+="<button class='big' onclick='go(-1)'><span class='bi'>🎲</span><div><b>Sve teme</b><span>10 nasumičnih pitanja iz cijelog gradiva.</span></div></button>";
+if(m=="read")h+="<button class='big' onclick='go(-1)'><span class='bi'>📚</span><div><b>Sve teme</b><span>Cijelo gradivo odjednom.</span></div></button>";
+render(h);
+}
+function go(i){S.t=i;S.mode=="learn"?learn():S.mode=="read"?readT():quiz()}
+function readT(){
+S.view="read";
+var ts=S.t<0?D:[D[S.t]];
+var h=hd("pick('read')")+"<h1>📄 Gradivo</h1><p>⭐ i ljubičasta crta = istaknuto u tvojoj skripti. <mark>Žuto</mark> = ključni pojmovi.</p><input class='srch' type='search' placeholder='Pretraži gradivo…' oninput='fl(this.value)'>";
+ts.forEach(function(t){h+="<h2>"+t[1]+" "+t[0]+"</h2>";t[2].forEach(function(c){h+="<div class='blk"+(c[3]?" st":"")+"'><h3>"+c[0]+(c[3]?"<span>⭐</span>":"")+"</h3>"+R(c[1])+"</div>"})});
+render(h+"<div class='row'><button class='btn ghost' onclick=\"pick('read')\">Teme</button><button class='btn' onclick='home()'>Izbornik</button></div>");
+}
+function fl(v){v=v.toLowerCase();document.querySelectorAll(".blk").forEach(function(b){b.style.display=b.textContent.toLowerCase().indexOf(v)<0?"none":""})}
+function learn(){S.view="learn";S.deck=D[S.t][2].slice();S.i=0;S.f=false;card()}
+function card(){
+var c=S.deck[S.i],n=S.deck.length;
+render(hd("pick('learn')")+"<div class='hud'><span>"+D[S.t][0]+"</span><span>"+(S.i+1)+" / "+n+"</span></div>"+
+"<div class='bar'><div style='width:"+((S.i+1)/n*100)+"%'></div></div>"+
+"<div class='fc'><div class='fci"+(S.f?" a":"")+"' onclick='flip()'><small>"+(S.f?"Definicija":"Pojam · dodirni za definiciju")+"</small><div class='t'>"+(S.f?R(c[1]):c[0])+"</div></div></div>"+
+"<div class='row'><button class='btn ghost' onclick='mv(-1)' aria-label='Prethodna'>‹</button><button class='btn ghost' onclick='mix()' aria-label='Promiješaj'>🔀</button><button class='btn' onclick='mv(1)' aria-label='Sljedeća'>›</button></div>");
+}
+function flip(){S.f=!S.f;card()}
+function mix(){S.deck=sh(S.deck);S.i=0;S.f=false;card()}
+function mv(d){
+var j=S.i+d;
+if(j<0)return;
+if(j>=S.deck.length){
+render(hd("pick('learn')")+"<div class='res'>🎉</div><h2 style='text-align:center'>Prošao/la si cijelu temu!</h2><p style='text-align:center'>Sad provjeri što si zapamtio/la.</p><div class='row'><button class='btn ghost' onclick=\"pick('learn')\">Teme</button><button class='btn' onclick='S.mode=\"quiz\";go("+S.t+")'>Vježbaj 🎯</button></div>");
+return;}
+S.i=j;S.f=false;card();
+}
+function quiz(){
+var all=allS().filter(function(c){return c[2]});
+var pool=S.t<0?all:D[S.t][2].filter(function(c){return c[2]});
+var qs=sh(pool).slice(0,10).map(function(c){
+var same=pool.filter(function(x){return x[2]!=c[2]}),oth=all.filter(function(x){return x[2]!=c[2]});
+var ds=sh(same).slice(0,3);
+if(ds.length<3)ds=ds.concat(sh(oth.filter(function(x){return ds.indexOf(x)<0})).slice(0,3-ds.length));
+return{q:"Odaberi točan opis: „"+c[0]+"“",a:c[2],o:sh([c[2]].concat(ds.map(function(x){return x[2]})))};
+});
+S.qs=qs;S.n=0;S.xp=0;S.st=0;S.ok=0;S.bs=0;S.wr=[];S.lock=false;ask();
+}
+function ask(){
+S.view="quiz";
+var q=S.qs[S.n],n=S.qs.length;
+var h=hd("pick('quiz')")+"<div class='hud'><span>Pitanje "+(S.n+1)+" / "+n+"</span><span>⚡ "+S.st+" &nbsp; ⭐ "+S.xp+" XP</span></div><div class='bar'><div style='width:"+(S.n/n*100)+"%'></div></div><div class='q'>"+q.q+"</div>";
+q.o.forEach(function(o,i){h+="<button class='opt' id='o"+i+"' onclick='ans("+i+")'><em>"+"ABCD".charAt(i)+"</em><span>"+R(o)+"</span></button>"});
+render(h+"<div id='fb'></div>");S.lock=false;
+}
+function ans(i){
+if(S.lock)return;S.lock=true;
+var q=S.qs[S.n],good=q.o[i]==q.a,fb=document.getElementById("fb");
+q.o.forEach(function(o,k){if(o==q.a)document.getElementById("o"+k).classList.add("ok")});
+var nx="<div class='row'><button class='btn' onclick='nxt()'>"+(S.n+1>=S.qs.length?"Rezultat":"Dalje")+" ›</button></div>";
+if(good){var g=10+Math.min(S.st,5)*2;S.st++;if(S.st>S.bs)S.bs=S.st;S.xp+=g;S.ok++;fb.innerHTML="<div class='fb ok'>✅ Točno! +"+g+" XP</div>"+nx}
+else{S.st=0;S.wr.push(q);document.getElementById("o"+i).classList.add("no");fb.innerHTML="<div class='fb no'>❌ Nije točno. Točan odgovor je označen zeleno.</div>"+nx}
+nx=document.querySelector("#fb .btn");if(nx)nx.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function nxt(){S.n++;S.n>=S.qs.length?fin():ask()}
+function fin(){
+S.view="fin";
+K.played++;K.xp+=S.xp;if(S.bs>K.best)K.best=S.bs;save();
+var n=S.qs.length,p=Math.round(S.ok/n*100),e=p==100?"🏆":p>=70?"🌟":p>=40?"👍":"💪";
+var h=hd()+"<div class='res'>"+e+"</div><div class='ring' style='--p:"+p+"'><span>"+p+"%</span></div><h2 style='text-align:center'>"+S.ok+" / "+n+" točno</h2><p style='text-align:center'>⭐ "+S.xp+" XP · najbolji niz u ovoj rundi: ⚡ "+S.bs+"</p>";
+if(S.wr.length){h+="<h2>Ponovi ovo:</h2>";S.wr.forEach(function(q){h+="<div class='rv'><b>"+q.q+"</b><span>"+R(q.a)+"</span></div>"})}
+render(h+"<div class='row'><button class='btn ghost' onclick=\"pick('quiz')\">Teme</button><button class='btn' onclick='quiz()'>Ponovi 🔁</button></div>");
+}
+document.addEventListener("keydown",function(e){
+if(e.target.tagName=="INPUT")return;
+if(S.view=="learn"){if(e.key=="ArrowRight")mv(1);else if(e.key=="ArrowLeft")mv(-1);else if(e.key==" "){e.preventDefault();flip()}}
+else if(S.view=="quiz"){var k=parseInt(e.key,10);if(k>=1&&k<=4&&document.getElementById("o"+(k-1)))ans(k-1);else if(e.key=="Enter"){var b=document.querySelector("#fb .btn");if(b)b.click()}}
+});
+home();
+</script>
+</body>
+</html>
